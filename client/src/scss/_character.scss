@@ -2,17 +2,18 @@
 @import 'variables.scss';
 
 .character-container {
-  @include flexbox(column, 2rem);
+  @include flexbox(column, 1rem);
   padding-top: 2em;
 
   .character-heading {
     color: $white;
-    padding-top: 4rem;
+    padding-top: 2rem;
     font-size: 2.2rem;
   }
 
   .character-chosen-message {
     color: $white;
+    padding-bottom: 0.8em;
   }
 
   .image-container {
@@ -28,6 +29,10 @@
   .row-character {
     @include flexbox(row, 20px);
   }
+}
+
+.character-button-container {
+  padding-bottom: 0.2em;
 }
 
 // .button-container {

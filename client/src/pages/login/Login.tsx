@@ -86,7 +86,7 @@ const Login = () => {
 
   return (
     <div className='login-container'>
-      <Logo />
+      {/* <Logo /> */}
       {selectedCharacter && (
         <img
           src={selectedCharacter}

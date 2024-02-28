@@ -65,7 +65,7 @@ const Character = () => {
 
   return (
     <div className='character-container'>
-      <Logo />
+      {/* <Logo /> */}
       <h1 className='character-heading' data-cy='character-heading'>
         Choose Your Duck
       </h1>
@@ -129,7 +129,13 @@ const Character = () => {
           dataCy='duck-image'
         />
       </div>
-      <Button title='Next' onClick={navigateToLoginPage} dataCy='next-button' />
+      <div className='character-button-container'>
+        <Button
+          title='Next'
+          onClick={navigateToLoginPage}
+          dataCy='next-button'
+        />
+      </div>
       {selectedImageMessage && (
         <p
           className='character-chosen-message'

@@ -8,6 +8,7 @@ const NotFound = lazy(() => import('./pages/notFound/NotFound'))
 const Login = lazy(() => import('./pages/login/Login'))
 const GameRoom = lazy(() => import('./pages/gameRoom/GameRoom'))
 const Lobby = lazy(() => import('./pages/lobby/Lobby'))
+const Logo = lazy(() => import('./components/Logo'))
 // since lazy loading asynchronous its a good practice to use suspense
 // to show that the page is loading.
 
@@ -16,11 +17,13 @@ function App() {
     <div className='smart-duck'>
       <Routes>
         <Route path='/' element={<Homepage />} />
-        <Route path='/character' element={<Character />} />
-        <Route path='*' element={<NotFound />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/game-room' element={<GameRoom />} />
-        <Route path='/lobby' element={<Lobby />} />
+        <Route element={<Logo />}>
+          <Route path='/character' element={<Character />} />
+          <Route path='*' element={<NotFound />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/game-room' element={<GameRoom />} />
+          <Route path='/lobby' element={<Lobby />} />
+        </Route>
       </Routes>
     </div>
   )

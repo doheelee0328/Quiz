@@ -85,7 +85,7 @@ const Lobby = () => {
 
   return (
     <div className='lobby-container'>
-      <Logo />
+      {/* <Logo /> */}
       <h1 className='lobby-title'>Lobby</h1>
       {/* <p className='lobby-waiting-sentence'>
         Waiting for the host to start the game....

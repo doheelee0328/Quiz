@@ -7,10 +7,12 @@ $small-medium-font-size: 1.6rem;
 $big-font-size: 3.2rem;
 
 .logo-container {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  @include flexbox(row, 5px);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: 50px;
+  padding: 0.5em;
+  gap: 0.5rem;
   .logo-duck {
     max-width: 50px;
   }
