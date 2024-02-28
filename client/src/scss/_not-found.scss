@@ -1,0 +1,9 @@
+@import 'theme.scss';
+@import 'variables.scss';
+
+.not-found-container {
+  @include flexbox(column, 2rems);
+  height: 100vh;
+  font-size: 3rem;
+  color: $white;
+}

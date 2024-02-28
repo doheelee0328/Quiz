@@ -1,0 +1,48 @@
+@import 'theme.scss';
+@import 'variables.scss';
+
+.character-container {
+  @include flexbox(column, 2rem);
+  padding-top: 2em;
+
+  .character-heading {
+    color: $white;
+    padding-top: 4rem;
+    font-size: 2.2rem;
+  }
+
+  .character-chosen-message {
+    color: $white;
+  }
+
+  .image-container {
+    @include flexbox(row, 0px);
+    .duck-image {
+      padding-top: 1rem;
+      max-width: 120px;
+      min-height: 40px;
+      margin: 0 auto;
+      cursor: pointer;
+    }
+  }
+  .row-character {
+    @include flexbox(row, 20px);
+  }
+}
+
+// .button-container {
+//   display: flex;
+//   justify-content: space-between;
+//   padding: 0.5em;
+//   width: 100%;
+//   position: absolute;
+//   bottom: 0;
+// }
+
+// .character-button {
+//   padding: 1em 3em;
+//   border-radius: 1.5em;
+//   cursor: pointer;
+//   background: #ffffff;
+//   border: none;
+// }

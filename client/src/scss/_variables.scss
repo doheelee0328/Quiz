@@ -1,0 +1,30 @@
+// different screen sizes
+
+// mobile devices
+$small-screen: 320px;
+$more-small-screen: 480px;
+
+// ipads/tablets
+$small-medium-screen: 481px;
+$more-small-medium-screen: 768px;
+
+// laptops
+$medium-screen: 769px;
+$more-medium-screen: 1024px;
+
+// desktopss
+$medium-large-screen: 1025px;
+$more-medium-large-screen: 1200px;
+
+// TV
+$large-screen: 1201px;
+
+// Reusable flexbox
+
+@mixin flexbox($flex-direction, $gap) {
+  display: flex;
+  flex-direction: $flex-direction;
+  justify-content: center;
+  align-items: center;
+  gap: $gap;
+}

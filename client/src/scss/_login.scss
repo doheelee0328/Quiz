@@ -1,0 +1,32 @@
+@import 'theme.scss';
+@import 'variables.scss';
+
+.login-container {
+  height: 100vh;
+  @include flexbox(column, 1rem);
+  .selected-character {
+    max-width: 300px;
+    min-height: 180px;
+  }
+  .nickname {
+    color: $white;
+    font-size: 1.3rem;
+  }
+  .input {
+    width: 300px;
+    min-height: 40px;
+    background: $white;
+    border-radius: 18px;
+    border: none;
+    text-align: center;
+  }
+}
+
+.start-game-container {
+  @include flexbox(row, 0.5rem);
+  padding-top: 1em;
+}
+
+.not-entered-message {
+  color: $white;
+}

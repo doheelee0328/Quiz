@@ -1,0 +1,58 @@
+@import 'theme.scss';
+@import 'variables.scss';
+
+.smart-duck-container {
+  @include flexbox(column, 2rem);
+  height: 100vh;
+  width: 100%;
+
+  .welcome-message,
+  .begin-learning-message {
+    color: $white;
+  }
+
+  .welcome-message {
+    font-size: $big-font-size;
+    font-weight: 800;
+    text-align: center;
+  }
+
+  .begin-learning-message {
+    font-size: $small-medium-font-size;
+    font-weight: 500;
+    margin-bottom: 1em;
+    text-align: center;
+  }
+  .image-container {
+    @include flexbox(column, 2rem);
+    .duck-image {
+      max-width: 900px;
+      min-height: 100px;
+      cursor: pointer;
+
+      &:hover {
+        transform: translateY(8px);
+      }
+    }
+
+    .arrow-image {
+      max-width: 60px;
+      min-height: 20px;
+      animation: moveUpDown 0.8s ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes moveUpDown {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}

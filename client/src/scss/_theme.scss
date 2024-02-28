@@ -1,0 +1,29 @@
+@import 'variables.scss';
+// color
+$white: #ffffff;
+$purple: #5f00c8;
+$yellow: #ffd256;
+$small-medium-font-size: 1.6rem;
+$big-font-size: 3.2rem;
+
+.logo-container {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  @include flexbox(row, 5px);
+  .logo-duck {
+    max-width: 50px;
+  }
+  .smart-duck-logo-title {
+    color: $white;
+  }
+}
+
+.character-button {
+  padding: 1em 4em;
+  border-radius: 1.5em;
+  cursor: pointer;
+  background: #ffffff;
+  border: none;
+  box-shadow: 3px 4px 3px 0px rgba(0, 0, 0, 0.6);
+}
