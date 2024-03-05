@@ -24,7 +24,7 @@ const GameSetup = () => {
   const fetchQuestions = async () => {
     try {
       const response = await fetch(
-        `https://opentdb.com/api.php?amount=10&type=multiple&category=${selectedCategory}&difficulty=${difficulty}`
+        `https://opentdb.com/api.php?amount=10&category=${selectedCategory}&difficulty=${difficulty}&type=multiple`
       )
       const data = await response.json()
 
@@ -55,18 +55,25 @@ const GameSetup = () => {
       {categories.map((category: any) => (
         <Button
           title={category.name}
-          onClick={() => setSelectedCategory(category.name)}
+          onClick={() => setSelectedCategory(category.id)}
           key={category.id}
         />
       ))}
-      {difficulty && selectedCategory ? (
-        <p>
-          You have selected {difficulty} and {selectedCategory}
-        </p>
-      ) : (
-        ''
-      )}
 
+      {/* {questions && questions.length > 0 && (
+        <div>
+          <h2>Questions</h2>
+          {questions.map((question: any, index: number) => (
+            <div key={index}>
+              <p>
+                Question {index + 1}: {question.question}
+              </p>
+              <p>Correct Answer: {question.correct_answer}</p>
+              <p>Incorrect Answers: {question.incorrect_answers.join(', ')}</p>
+            </div>
+          ))}
+        </div>
+      )} */}
       <Button title='Play' onClick={playButtonHandler} />
     </div>
   )
