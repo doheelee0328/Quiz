@@ -76,7 +76,7 @@ const Login = () => {
         (room: string | boolean) => {
           // callback function that provides the name of the room
           if (typeof room === 'string') {
-            navigate('/gaming-room')
+            navigate('/game-room')
             dispatch(setHostName(playerName)) // Dispatch setHostName after setting playerName
           } else {
             setMessage('The room already exists, please try again')
