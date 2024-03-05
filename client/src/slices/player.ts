@@ -4,14 +4,14 @@ type PlayerState = {
   playersInRoom: string[]
   gamingRoom: string
   hostName: string
-  playerName: string
+  nickname: string
 }
 
 const initialPlayerState: PlayerState = {
   playersInRoom: [],
   gamingRoom: '',
   hostName: '',
-  playerName: '',
+  nickname: '',
 }
 
 const PlayerSlice = createSlice({
@@ -27,12 +27,12 @@ const PlayerSlice = createSlice({
     setHostName(state, action) {
       state.hostName = action.payload
     },
-    setPlayerName(state, action) {
-      state.hostName = action.payload
+    setNickname(state, action) {
+      state.nickname = action.payload
     },
   },
 })
 
-export const { setPlayersInRoom, gamingRoom, setHostName, setPlayerName } =
+export const { setPlayersInRoom, gamingRoom, setHostName, setNickname } =
   PlayerSlice.actions
 export default PlayerSlice.reducer

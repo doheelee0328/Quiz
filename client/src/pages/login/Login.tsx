@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { changeCharacter } from '../../slices/character'
-import { gamingRoom, setHostName } from '../../slices/player'
+import { gamingRoom, setHostName, setNickname } from '../../slices/player'
 import '../../scss/main.scss'
 import Button from '../../components/Buttons'
 import { useNavigate } from 'react-router-dom'
@@ -64,6 +64,8 @@ const Login = () => {
       setMessage('Please enter your username and room to create a quiz')
       return
     } else {
+      dispatch(setNickname(playerName))
+      // set the nickname to the player name
       setPlayerName('') // Reset playerName first
       dispatch(gamingRoom('')) // Reset selectedRoom
 
@@ -74,7 +76,7 @@ const Login = () => {
         (room: string | boolean) => {
           // callback function that provides the name of the room
           if (typeof room === 'string') {
-            setMessage(`Room ${room} has been created`)
+            navigate('/gaming-room')
             dispatch(setHostName(playerName)) // Dispatch setHostName after setting playerName
           } else {
             setMessage('The room already exists, please try again')
