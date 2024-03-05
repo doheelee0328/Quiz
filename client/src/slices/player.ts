@@ -27,8 +27,12 @@ const PlayerSlice = createSlice({
     setHostName(state, action) {
       state.hostName = action.payload
     },
+    setPlayerName(state, action) {
+      state.hostName = action.payload
+    },
   },
 })
 
-export const { setPlayersInRoom, gamingRoom, setHostName } = PlayerSlice.actions
+export const { setPlayersInRoom, gamingRoom, setHostName, setPlayerName } =
+  PlayerSlice.actions
 export default PlayerSlice.reducer
