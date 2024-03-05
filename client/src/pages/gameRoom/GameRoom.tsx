@@ -68,8 +68,14 @@ const GameSetup = () => {
               <p>
                 Question {index + 1}: {question.question}
               </p>
-              <p>Correct Answer: {question.correct_answer}</p>
-              <p>Incorrect Answers: {question.incorrect_answers.join(', ')}</p>
+              <ul>
+                <li>{question.correct_answer}</li>
+                {question.incorrect_answers.map(
+                  (question: any, index: number) => (
+                    <li key={index}>{question}</li>
+                  )
+                )}
+              </ul>
             </div>
           ))}
         </div>
