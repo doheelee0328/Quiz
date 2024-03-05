@@ -4,12 +4,14 @@ type PlayerState = {
   playersInRoom: string[]
   gamingRoom: string
   hostName: string
+  playerName: string
 }
 
 const initialPlayerState: PlayerState = {
   playersInRoom: [],
   gamingRoom: '',
   hostName: '',
+  playerName: '',
 }
 
 const PlayerSlice = createSlice({
