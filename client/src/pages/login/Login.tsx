@@ -54,6 +54,7 @@ const Login = () => {
     socket.emit('join-room', selectedRoom, playerName, (roomExist: boolean) => {
       if (roomExist) {
         navigate('/lobby')
+        dispatch(setNickname(playerName))
       } else {
         setMessage(`The room ${selectedRoom} does not exist`)
       }

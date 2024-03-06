@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { setScore } from '../../slices/questions'
+import Button from '../../components/Buttons'
+import { useNavigate } from 'react-router-dom'
 
 const Questions = () => {
-  const [questions, setQuestions] = useState([])
+  const [questions, setQuestions] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
+  const [selectOption, setSelectOption] = useState('')
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
+  const [shuffledOptions, setShuffledOptions] = useState<string[]>([])
 
   const selectedCategory = useSelector(
     (state: any) => state.questionSlice.selectedCategory
@@ -11,6 +17,10 @@ const Questions = () => {
   const difficulty = useSelector(
     (state: any) => state.questionSlice.selectedDifficulty
   )
+  const score = useSelector((state: any) => state.questionSlice.score)
+
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const fetchQuestions = async (retryCount = 3) => {
     try {
@@ -44,9 +54,43 @@ const Questions = () => {
 
   useEffect(() => {
     fetchQuestions()
-    // what
   }, [])
 
+  useEffect(() => {
+    if (questions.length > 0) {
+      const shuffled = shuffleQuestions(
+        questions[currentQuestionIndex].correct_answer,
+        questions[currentQuestionIndex].incorrect_answers
+      )
+      setShuffledOptions(shuffled)
+    }
+  }, [questions, currentQuestionIndex])
+
+  const shuffleQuestions = (
+    correctAnswer: string,
+    incorrectAnswer: string[]
+  ) => {
+    const options = [...incorrectAnswer, correctAnswer]
+    return options.sort(() => Math.random() - 0.5)
+  }
+
+  const handleSelectOption = (option: string, correctAnswer: string) => {
+    setSelectOption(option)
+    if (option === correctAnswer) {
+      dispatch(setScore(score + 1))
+    }
+  }
+
+  const handleNextQuestion = () => {
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1)
+      setSelectOption('')
+    }
+  }
+
+  const handleLeaderBoardPage = () => {
+    navigate('/leaderboard')
+  }
   return (
     <div>
       <h2>Questions</h2>
@@ -56,21 +100,36 @@ const Questions = () => {
         questions &&
         questions.length > 0 && (
           <div>
-            {questions.map((question: any, index: number) => (
-              <div key={index}>
-                <p>
-                  Question {index + 1}: {question.question}
-                </p>
-                <ul>
-                  <li>{question.correct_answer}</li>
-                  {question.incorrect_answers.map(
-                    (question: any, index: number) => (
-                      <li key={index}>{question}</li>
-                    )
-                  )}
-                </ul>
-              </div>
-            ))}
+            <div>
+              <p>
+                {`Question ${currentQuestionIndex + 1} ${
+                  questions[currentQuestionIndex].question
+                }`}
+              </p>
+              <ul>
+                {shuffledOptions.map((option, index) => (
+                  <>
+                    <li
+                      key={index}
+                      onClick={() =>
+                        handleSelectOption(
+                          option,
+                          questions[currentQuestionIndex].correct_answer
+                        )
+                      }
+                    >
+                      {option}
+                    </li>
+                  </>
+                ))}
+              </ul>
+              {currentQuestionIndex === questions.length - 1 ? (
+                <Button title='Submit Quiz' onClick={handleLeaderBoardPage} />
+              ) : (
+                <Button title='Next Question' onClick={handleNextQuestion} />
+              )}
+              {selectOption && <p>{`You have selected ${selectOption}`}</p>}
+            </div>
           </div>
         )
       )}
