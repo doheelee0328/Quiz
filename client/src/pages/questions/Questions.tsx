@@ -34,9 +34,16 @@ const Questions = () => {
         const retryAfter = response.headers.get('Retry-After')
         const delay = retryAfter ? parseInt(retryAfter) * 1000 : 1000 // Default to 1 second delay if no Retry-After header provided
 
-        setTimeout(() => {
-          fetchQuestions(retryCount - 1)
-        }, delay)
+        if (retryCount > 0) {
+          setTimeout(() => {
+            fetchQuestions(retryCount - 1)
+          }, delay)
+        } else {
+          // Handle error or display a message
+          console.error('API rate limit exceeded')
+          // Optionally, set loading state to false to stop continuous loading
+          setLoading(false)
+        }
 
         return
       }
@@ -50,6 +57,11 @@ const Questions = () => {
         setTimeout(() => {
           fetchQuestions(retryCount - 1)
         }, 1000) // Retry after 1 second
+      } else {
+        // Handle error or display a message
+        console.error('Error fetching data')
+        // Optionally, set loading state to false to stop continuous loading
+        setLoading(false)
       }
     }
   }
