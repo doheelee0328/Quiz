@@ -10,6 +10,7 @@ const Questions = () => {
   const [selectOption, setSelectOption] = useState('')
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [shuffledOptions, setShuffledOptions] = useState<string[]>([])
+  const [message, setMessage] = useState('')
 
   const selectedCategory = useSelector(
     (state: any) => state.questionSlice.selectedCategory
@@ -82,14 +83,23 @@ const Questions = () => {
   }
 
   const handleNextQuestion = () => {
-    if (currentQuestionIndex < questions.length - 1) {
+    if (!selectOption) {
+      setMessage('Please select an answer')
+      return
+    } else if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1)
       setSelectOption('')
+      setMessage('')
     }
   }
 
   const handleLeaderBoardPage = () => {
+    if (!selectOption) {
+      setMessage('Please select an answer')
+      return
+    }
     navigate('/leaderboard')
+    setMessage('')
   }
   return (
     <div>
@@ -128,7 +138,12 @@ const Questions = () => {
               ) : (
                 <Button title='Next Question' onClick={handleNextQuestion} />
               )}
-              {selectOption && <p>{`You have selected ${selectOption}`}</p>}
+
+              {selectOption ? (
+                <p>{`You have selected ${selectOption}`}</p>
+              ) : (
+                message && <p>{message}</p>
+              )}
             </div>
           </div>
         )

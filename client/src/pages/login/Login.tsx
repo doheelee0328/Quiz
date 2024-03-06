@@ -6,7 +6,6 @@ import '../../scss/main.scss'
 import Button from '../../components/Buttons'
 import { useNavigate } from 'react-router-dom'
 import { socket } from '../../socket/index'
-import Logo from '../../components/Logo'
 import { setPlayersInRoom } from '../../slices/player'
 
 // use redux to use the nickname and room

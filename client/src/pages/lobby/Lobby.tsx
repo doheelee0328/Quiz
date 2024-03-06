@@ -72,7 +72,6 @@ const Lobby = () => {
 
     socket.on('receive-message', receiveMessageHandler)
 
-    // Cleanup function repeated messages
     return () => {
       socket.off('update-nicknames')
       socket.off('receive-message', receiveMessageHandler)
