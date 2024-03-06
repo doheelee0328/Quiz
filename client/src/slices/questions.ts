@@ -3,11 +3,13 @@ import { createSlice } from '@reduxjs/toolkit'
 type QuestionState = {
   selectedCategory: string | number
   selectedDifficulty: string
+  score: number
 }
 
 const initialQuestionState: QuestionState = {
   selectedCategory: '',
   selectedDifficulty: '',
+  score: 0,
 }
 
 const questionSlice = createSlice({
@@ -20,9 +22,12 @@ const questionSlice = createSlice({
     setSelectedDifficulty(state, action) {
       state.selectedDifficulty = action.payload
     },
+    setScore(state, action) {
+      state.score = action.payload
+    },
   },
 })
 
-export const { setSelectedCategory, setSelectedDifficulty } =
+export const { setSelectedCategory, setSelectedDifficulty, setScore } =
   questionSlice.actions
 export default questionSlice.reducer
