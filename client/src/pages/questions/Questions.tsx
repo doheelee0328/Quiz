@@ -11,6 +11,7 @@ const Questions = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [shuffledOptions, setShuffledOptions] = useState<string[]>([])
   const [message, setMessage] = useState('')
+  const [timer, setTimer] = useState(20)
 
   const selectedCategory = useSelector(
     (state: any) => state.questionSlice.selectedCategory
@@ -54,16 +55,13 @@ const Questions = () => {
   }
 
   useEffect(() => {
-    fetchQuestions()
-  }, [])
-
-  useEffect(() => {
     if (questions.length > 0) {
       const shuffled = shuffleQuestions(
         questions[currentQuestionIndex].correct_answer,
         questions[currentQuestionIndex].incorrect_answers
       )
       setShuffledOptions(shuffled)
+      setTimer(20)
     }
   }, [questions, currentQuestionIndex])
 
@@ -90,6 +88,7 @@ const Questions = () => {
       setCurrentQuestionIndex(currentQuestionIndex + 1)
       setSelectOption('')
       setMessage('')
+      setTimer(20)
     }
   }
 
@@ -101,6 +100,32 @@ const Questions = () => {
     navigate('/leaderboard')
     setMessage('')
   }
+
+  useEffect(() => {
+    const timerId = setInterval(() => {
+      setTimer((prevTime) => {
+        if (prevTime === 0) {
+          clearInterval(timerId)
+          if (currentQuestionIndex === questions.length - 1) {
+            navigate('/leaderboard')
+          } else {
+            setCurrentQuestionIndex(currentQuestionIndex + 1)
+            setMessage('')
+            return 20 // Reset the timer to 20 when moving to the next question
+          }
+        }
+        return prevTime - 1
+      })
+    }, 1000)
+
+    // Clean up interval on component unmount
+    return () => clearInterval(timerId)
+  }, [currentQuestionIndex, questions])
+
+  useEffect(() => {
+    fetchQuestions()
+  }, [])
+
   return (
     <div>
       <h2>Questions</h2>
@@ -111,6 +136,7 @@ const Questions = () => {
         questions.length > 0 && (
           <div>
             <div>
+              <p>Time {timer} seconds</p>
               <p>
                 {`Question ${currentQuestionIndex + 1} ${
                   questions[currentQuestionIndex].question
