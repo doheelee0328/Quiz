@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef, useReducer } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Button from '../../components/Buttons'
 import { useSelector } from 'react-redux'
 import { socket } from '../../socket/index'
 import { useDispatch } from 'react-redux'
 import { setPlayersInRoom } from '../../slices/player'
-import Logo from '../../components/Logo'
 import MessageLogo from '../../images/send-message-icon.png'
 import '../../scss/main.scss'
 import LobbyStatus from '../../components/LobbyStatus'
@@ -36,9 +36,15 @@ const Lobby = () => {
     (state: any) => state.characterSlice.character
   )
   const hostName = useSelector((state: any) => state.playerSlice.hostName)
-  console.log(hostName)
+  const selectedCategory = useSelector(
+    (state: any) => state.questionSlice.selectedCategory
+  )
+  const difficulty = useSelector(
+    (state: any) => state.questionSlice.selectedDifficulty
+  )
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   useEffect(() => {
     socket.on('update-nicknames', (updatedNicknames) => {
@@ -73,6 +79,10 @@ const Lobby = () => {
       socket.off('playerData')
     }
   }, [])
+
+  const navigateToQuestionPage = () => {
+    navigate('/questions')
+  }
 
   const submitMessageHandler = () => {
     if (!message) {
@@ -139,7 +149,9 @@ const Lobby = () => {
       )}
 
       <div className='lobby-button-container'>
-        {hostName && <Button title='Start The Quiz' />}
+        {hostName && (
+          <Button title='Start The Quiz' onClick={navigateToQuestionPage} />
+        )}
 
         <Button
           title='Send Messages To Your Players'
@@ -147,6 +159,11 @@ const Lobby = () => {
         />
       </div>
       <p className='lobby-message'>{errorMessage && errorMessage}</p>
+      <p>
+        {selectedCategory &&
+          difficulty &&
+          `The host has selected ${selectedCategory.name} with the level of ${difficulty}`}
+      </p>
     </div>
   )
 }

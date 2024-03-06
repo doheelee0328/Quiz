@@ -14,7 +14,7 @@ const initialPlayerState: PlayerState = {
   nickname: '',
 }
 
-const PlayerSlice = createSlice({
+const playerSlice = createSlice({
   name: 'player',
   initialState: initialPlayerState,
   reducers: {
@@ -34,5 +34,5 @@ const PlayerSlice = createSlice({
 })
 
 export const { setPlayersInRoom, gamingRoom, setHostName, setNickname } =
-  PlayerSlice.actions
-export default PlayerSlice.reducer
+  playerSlice.actions
+export default playerSlice.reducer
