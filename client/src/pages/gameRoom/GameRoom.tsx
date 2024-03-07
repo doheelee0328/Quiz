@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from '../../components/Buttons'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   setSelectedCategory,
   setSelectedDifficulty,
@@ -12,6 +12,13 @@ const GameSetup = () => {
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
+
+  const selectedCategory = useSelector(
+    (state: any) => state.questionSlice.selectedCategory
+  )
+  const difficulty = useSelector(
+    (state: any) => state.questionSlice.selectedDifficulty
+  )
 
   const fetchCategories = async () => {
     try {
@@ -41,14 +48,17 @@ const GameSetup = () => {
           <Button
             title='Easy'
             onClick={() => dispatch(setSelectedDifficulty('easy'))}
+            active={difficulty === 'easy'}
           />
           <Button
             title='Medium'
             onClick={() => dispatch(setSelectedDifficulty('medium'))}
+            active={difficulty === 'medium'}
           />
           <Button
             title='Hard'
             onClick={() => dispatch(setSelectedDifficulty('hard'))}
+            active={difficulty === 'hard'}
           />
         </div>
       </div>
@@ -63,6 +73,7 @@ const GameSetup = () => {
                   setSelectedCategory({ id: category.id, name: category.name })
                 )
               }
+              active={selectedCategory && selectedCategory.id === category.id}
               key={category.id}
             />
           ))}

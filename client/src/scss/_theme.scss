@@ -28,4 +28,8 @@ $big-font-size: 3.2rem;
   background: #ffffff;
   border: none;
   box-shadow: 3px 4px 3px 0px rgba(0, 0, 0, 0.6);
+
+  &.active {
+    background-color: $yellow;
+  }
 }

@@ -5,11 +5,16 @@ interface ButtonProps {
   title: string
   onClick?: () => void
   dataCy?: string
+  active?: boolean
 }
 
-const Button = ({ title, onClick, dataCy }: ButtonProps) => {
+const Button = ({ title, onClick, dataCy, active }: ButtonProps) => {
   return (
-    <button className='character-button' onClick={onClick} data-cy={dataCy}>
+    <button
+      className={`character-button ${active ? 'active' : ''}`}
+      onClick={onClick}
+      data-cy={dataCy}
+    >
       {title}
     </button>
   )
