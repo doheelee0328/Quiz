@@ -9,9 +9,6 @@ import {
 
 const GameSetup = () => {
   const [categories, setCategories] = useState([])
-  // const [selectedCategory, setSelectedCategory] = useState('')
-  // const [questions, setQuestions] = useState([])
-  // const [difficulty, setDifficulty] = useState('')
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -36,8 +33,8 @@ const GameSetup = () => {
   }
 
   return (
-    <div>
-      <h1>Let's set up a game</h1>
+    <div className='game-room-container'>
+      <h1 className='heading-setup-game'>Let's set up a game</h1>
       <h1>Pick a difficulty</h1>
       <Button
         title='Easy'
