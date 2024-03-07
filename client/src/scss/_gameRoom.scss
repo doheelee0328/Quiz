@@ -1,0 +1,35 @@
+@import 'theme.scss';
+@import 'variables.scss';
+
+.game-room-container {
+  padding-top: 0.5em;
+  color: $white;
+  text-align: center;
+  .heading-setup-game {
+    font-weight: 900;
+  }
+
+  .difficulty-container {
+    @include flexbox(column, 2px);
+    padding: 1em;
+
+    .choose-container {
+      @include flexbox(row, 10px);
+      flex-wrap: wrap;
+    }
+  }
+
+  .category-container {
+    padding: 1em;
+    .pick-container-category {
+      padding-top: 0.2em;
+      @include flexbox(row, 12px);
+      flex-wrap: wrap;
+    }
+  }
+
+  .pick-heading {
+    font-size: 1.3rem;
+    padding-bottom: 0.5em;
+  }
+}

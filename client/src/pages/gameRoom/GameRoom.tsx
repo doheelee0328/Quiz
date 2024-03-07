@@ -34,34 +34,40 @@ const GameSetup = () => {
 
   return (
     <div className='game-room-container'>
-      <h1 className='heading-setup-game'>Let's set up a game</h1>
-      <h1>Pick a difficulty</h1>
-      <Button
-        title='Easy'
-        onClick={() => dispatch(setSelectedDifficulty('easy'))}
-      />
-      <Button
-        title='Medium'
-        onClick={() => dispatch(setSelectedDifficulty('medium'))}
-      />
-      <Button
-        title='Hard'
-        onClick={() => dispatch(setSelectedDifficulty('hard'))}
-      />
-
-      <h1>Pick a Category</h1>
-      {categories.map((category: any) => (
-        <Button
-          title={category.name}
-          onClick={() =>
-            dispatch(
-              setSelectedCategory({ id: category.id, name: category.name })
-            )
-          }
-          key={category.id}
-        />
-      ))}
-
+      <h1 className='heading-setup-game'>Let's Play!</h1>
+      <div className='difficulty-container'>
+        <h2 className='pick-heading'>Pick a difficulty</h2>
+        <div className='choose-container'>
+          <Button
+            title='Easy'
+            onClick={() => dispatch(setSelectedDifficulty('easy'))}
+          />
+          <Button
+            title='Medium'
+            onClick={() => dispatch(setSelectedDifficulty('medium'))}
+          />
+          <Button
+            title='Hard'
+            onClick={() => dispatch(setSelectedDifficulty('hard'))}
+          />
+        </div>
+      </div>
+      <div className='category-container'>
+        <h2 className='pick-heading'>Pick a Category</h2>
+        <div className='pick-container-category'>
+          {categories.map((category: any) => (
+            <Button
+              title={category.name}
+              onClick={() =>
+                dispatch(
+                  setSelectedCategory({ id: category.id, name: category.name })
+                )
+              }
+              key={category.id}
+            />
+          ))}
+        </div>
+      </div>
       <Button title='Play' onClick={playButtonHandler} />
     </div>
   )
