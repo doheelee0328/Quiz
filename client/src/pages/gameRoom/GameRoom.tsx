@@ -25,7 +25,7 @@ const GameSetup = () => {
     try {
       const response = await fetch('https://opentdb.com/api_category.php')
       const data = await response.json()
-
+      console.log(data.trivia_categories)
       setCategories(data.trivia_categories)
     } catch (error) {
       console.error(error)
@@ -80,7 +80,7 @@ const GameSetup = () => {
           ))}
         </div>
       </div>
-      <Button title='Submit' onClick={playButtonHandler} />
+      <Button title='Ready To Play' onClick={playButtonHandler} />
     </div>
   )
 }
