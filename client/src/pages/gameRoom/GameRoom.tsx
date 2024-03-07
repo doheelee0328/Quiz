@@ -6,6 +6,7 @@ import {
   setSelectedCategory,
   setSelectedDifficulty,
 } from '../../slices/questions'
+import '../../scss/main.scss'
 
 const GameSetup = () => {
   const [categories, setCategories] = useState([])
@@ -79,7 +80,7 @@ const GameSetup = () => {
           ))}
         </div>
       </div>
-      <Button title='Play' onClick={playButtonHandler} />
+      <Button title='Submit' onClick={playButtonHandler} />
     </div>
   )
 }

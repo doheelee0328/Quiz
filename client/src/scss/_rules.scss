@@ -1,0 +1,20 @@
+@import 'theme.scss';
+@import 'variables.scss';
+
+.rules-container {
+  color: $white;
+  box-shadow: 3px 4px 3px 0px rgba(0, 0, 0, 0.6);
+  max-width: 600px;
+  min-height: 500px;
+  margin: 0 auto;
+
+  @include flexbox(column, 80px);
+  .rules-heading {
+    font-size: 2rem;
+    text-align: center;
+  }
+  .rules {
+    padding: 1em;
+    @include flexbox(column, 20px);
+  }
+}

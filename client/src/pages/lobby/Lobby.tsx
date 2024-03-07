@@ -26,8 +26,6 @@ const Lobby = () => {
   >([])
   const [showMessage, setShowMessage] = useState<boolean>(false)
 
-  // const [playersInRoom, setPlayersInRoom] = useState<Array<string>>([])
-
   const selectedRoom = useSelector((state: any) => state.playerSlice.gamingRoom)
   const playersInRoom = useSelector(
     (state: any) => state.playerSlice.playersInRoom
@@ -80,7 +78,7 @@ const Lobby = () => {
   }, [])
 
   const navigateToQuestionPage = () => {
-    navigate('/questions')
+    navigate('/rules')
   }
 
   const submitMessageHandler = () => {
@@ -94,11 +92,7 @@ const Lobby = () => {
 
   return (
     <div className='lobby-container'>
-      {/* <Logo /> */}
       <h1 className='lobby-title'>Lobby</h1>
-      {/* <p className='lobby-waiting-sentence'>
-        Waiting for the host to start the game....
-      </p> */}
 
       <div className='players-container'>
         <h3 className='number-of-players'>
