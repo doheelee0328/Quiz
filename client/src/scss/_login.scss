@@ -2,8 +2,8 @@
 @import 'variables.scss';
 
 .login-container {
-  height: 100vh;
   @include flexbox(column, 1rem);
+  height: calc(100vh - 100px);
   .selected-character {
     max-width: 300px;
     min-height: 180px;
