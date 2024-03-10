@@ -80,7 +80,9 @@ const GameSetup = () => {
           ))}
         </div>
       </div>
-      <Button title='Ready To Play' onClick={playButtonHandler} />
+      <div className='ready-to-play-container'>
+        <Button title='Ready To Play' onClick={playButtonHandler} />
+      </div>
     </div>
   )
 }

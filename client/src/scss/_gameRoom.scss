@@ -2,7 +2,10 @@
 @import 'variables.scss';
 
 .game-room-container {
-  padding-top: 0.5em;
+  position: absolute;
+
+  top: 50%;
+  transform: translate(0%, -50%);
   color: $white;
   text-align: center;
   .heading-setup-game {
@@ -31,5 +34,9 @@
   .pick-heading {
     font-size: 1.3rem;
     padding-bottom: 0.5em;
+  }
+
+  .ready-to-play-container {
+    padding-top: 1em;
   }
 }

@@ -152,7 +152,7 @@ const Lobby = () => {
         />
       </div>
       <p className='lobby-message'>{errorMessage && errorMessage}</p>
-      <p>
+      <p className='selected-level-category'>
         {selectedCategory &&
           difficulty &&
           `The host has selected ${selectedCategory.name} with the level of ${difficulty}`}

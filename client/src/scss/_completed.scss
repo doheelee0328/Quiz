@@ -1,0 +1,29 @@
+@import 'theme.scss';
+@import 'variables.scss';
+
+.completed-container {
+  color: $white;
+  box-shadow: 3px 4px 3px 0px rgba(0, 0, 0, 0.6);
+  width: 50%;
+  min-height: 500px;
+  margin: 0 auto;
+
+  @include flexbox(column, 20px);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  .completed-button-container {
+    display: flex;
+    gap: 15px;
+  }
+
+  .score-completed {
+    font-size: 1.3rem;
+  }
+
+  .trophy-image {
+    width: 30%;
+  }
+}

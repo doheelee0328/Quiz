@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setScore } from '../../slices/questions'
 import Button from '../../components/Buttons'
 import { useNavigate } from 'react-router-dom'
+import '../../scss/main.scss'
 
 const Questions = () => {
   const [questions, setQuestions] = useState<any[]>([])
@@ -104,12 +105,12 @@ const Questions = () => {
     }
   }
 
-  const handleLeaderBoardPage = () => {
+  const handleCompletedPage = () => {
     if (!selectOption) {
       setMessage('Please select an answer')
       return
     }
-    navigate('/leaderboard')
+    navigate('/completed')
     setMessage('')
   }
 
@@ -119,7 +120,7 @@ const Questions = () => {
         if (prevTime === 0) {
           clearInterval(timerId)
           if (currentQuestionIndex === questions.length - 1) {
-            navigate('/leaderboard')
+            navigate('/completed')
           } else {
             setCurrentQuestionIndex(currentQuestionIndex + 1)
             setMessage('')
@@ -140,48 +141,55 @@ const Questions = () => {
 
   return (
     <div>
-      <h2>Questions</h2>
       {loading ? (
         <p>Loading...</p>
       ) : (
         questions &&
         questions.length > 0 && (
           <div>
-            <div>
-              <p>Time {timer} seconds</p>
-              <p>
-                {`Question ${currentQuestionIndex + 1} ${
-                  questions[currentQuestionIndex].question
-                }`}
+            <div className='questions-container'>
+              <p className='timer-container'>
+                Time left <span className='timer'>{timer}</span>
               </p>
-              <ul>
-                {shuffledOptions.map((option, index) => (
-                  <>
-                    <li
-                      key={index}
-                      onClick={() =>
-                        handleSelectOption(
-                          option,
-                          questions[currentQuestionIndex].correct_answer
-                        )
-                      }
-                    >
-                      {option}
-                    </li>
-                  </>
-                ))}
-              </ul>
-              {currentQuestionIndex === questions.length - 1 ? (
-                <Button title='Submit Quiz' onClick={handleLeaderBoardPage} />
-              ) : (
-                <Button title='Next Question' onClick={handleNextQuestion} />
-              )}
 
-              {selectOption ? (
-                <p>{`You have selected ${selectOption}`}</p>
-              ) : (
-                message && <p>{message}</p>
-              )}
+              <div className='question-answer-container'>
+                <p className='questions'>
+                  {questions[currentQuestionIndex].question}
+                </p>
+                <div className='questions-answers'>
+                  {shuffledOptions.map((option, index) => (
+                    <>
+                      <Button
+                        key={index}
+                        title={option}
+                        onClick={() =>
+                          handleSelectOption(
+                            option,
+                            questions[currentQuestionIndex].correct_answer
+                          )
+                        }
+                        active={selectOption === option}
+                      />
+                    </>
+                  ))}
+                </div>
+                {currentQuestionIndex === questions.length - 1 ? (
+                  <Button title='Submit Quiz' onClick={handleCompletedPage} />
+                ) : (
+                  <Button title='Next Question' onClick={handleNextQuestion} />
+                )}
+              </div>
+              <div className='bottom-container'>
+                {selectOption ? (
+                  <p className='selected-option'>{`You have selected ${selectOption}`}</p>
+                ) : (
+                  message && <p className='error-selected-message'>{message}</p>
+                )}
+
+                <p className='out-of-questions'>{`${
+                  currentQuestionIndex + 1
+                }/5 questions`}</p>
+              </div>
             </div>
           </div>
         )
