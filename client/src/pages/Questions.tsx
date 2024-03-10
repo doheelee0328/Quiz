@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setScore } from '../../slices/questions'
-import Button from '../../components/Buttons'
+import { setScore } from '../slices/questions'
+import Button from '../components/Buttons'
 import { useNavigate } from 'react-router-dom'
-import '../../scss/main.scss'
+import '../scss/main.scss'
 
 const Questions = () => {
   const [questions, setQuestions] = useState<any[]>([])

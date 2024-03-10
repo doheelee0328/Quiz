@@ -1,9 +1,9 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import Trophy from '../../images/trophy.png'
-import Button from '../../components/Buttons'
+import Trophy from '../images/trophy.png'
+import Button from '../components/Buttons'
 import { useNavigate } from 'react-router-dom'
-import '../../scss/main.scss'
+import '../scss/main.scss'
 
 const Completed = () => {
   const score = useSelector((state: any) => state.questionSlice.score)

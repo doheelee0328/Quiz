@@ -1,12 +1,12 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { changeCharacter } from '../../slices/character'
-import { gamingRoom, setHostName, setNickname } from '../../slices/player'
-import '../../scss/main.scss'
-import Button from '../../components/Buttons'
+import { changeCharacter } from '../slices/character'
+import { gamingRoom, setHostName, setNickname } from '../slices/player'
+import '../scss/main.scss'
+import Button from '../components/Buttons'
 import { useNavigate } from 'react-router-dom'
-import { socket } from '../../socket/index'
-import { setPlayersInRoom } from '../../slices/player'
+import { socket } from '../socket/index'
+import { setPlayersInRoom } from '../slices/player'
 
 // use redux to use the nickname and room
 const Login = () => {

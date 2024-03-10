@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef, useReducer } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Button from '../../components/Buttons'
+import Button from '../components/Buttons'
 import { useSelector } from 'react-redux'
-import { socket } from '../../socket/index'
+import { socket } from '../socket/index'
 import { useDispatch } from 'react-redux'
-import { setPlayersInRoom } from '../../slices/player'
-import MessageLogo from '../../images/send-message-icon.png'
-import '../../scss/main.scss'
-import LobbyStatus from '../../components/LobbyStatus'
+import { setPlayersInRoom } from '../slices/player'
+import MessageLogo from '../images/send-message-icon.png'
+import '../scss/main.scss'
+import LobbyStatus from '../components/LobbyStatus'
 
 type LobbyState = {
   message: string

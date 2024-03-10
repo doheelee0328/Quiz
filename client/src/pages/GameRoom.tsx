@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Button from '../../components/Buttons'
+import Button from '../components/Buttons'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  setSelectedCategory,
-  setSelectedDifficulty,
-} from '../../slices/questions'
-import '../../scss/main.scss'
+import { setSelectedCategory, setSelectedDifficulty } from '../slices/questions'
+import '../scss/main.scss'
 
 const GameSetup = () => {
   const [categories, setCategories] = useState([])

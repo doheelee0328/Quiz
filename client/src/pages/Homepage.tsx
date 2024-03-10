@@ -1,8 +1,8 @@
 import React from 'react'
-import Arrow from '../../images/Arrow.png'
-import Duck from '../../images/Duck.png'
+import Arrow from '../images/Arrow.png'
+import Duck from '../images/Duck.png'
 import { Link } from 'react-router-dom'
-import '../../scss/main.scss'
+import '../scss/main.scss'
 
 const Homepage = () => {
   return (

@@ -1,7 +1,7 @@
 import React from 'react'
-import Button from '../../components/Buttons'
+import Button from '../components/Buttons'
 import { useNavigate } from 'react-router-dom'
-import '../../scss/main.scss'
+import '../scss/main.scss'
 
 const Rules = () => {
   const navigate = useNavigate()
