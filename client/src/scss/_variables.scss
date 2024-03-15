@@ -28,3 +28,10 @@ $large-screen: 1201px;
   align-items: center;
   gap: $gap;
 }
+
+@mixin center() {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

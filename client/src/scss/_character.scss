@@ -5,6 +5,7 @@
   @include flexbox(column, 1rem);
   padding-top: 1.5em;
 
+  @include center();
   .character-heading {
     color: $white;
     text-align: center;

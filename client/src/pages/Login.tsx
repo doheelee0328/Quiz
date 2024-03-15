@@ -66,8 +66,6 @@ const Login = () => {
     } else {
       dispatch(setNickname(playerName))
       // set the nickname to the player name
-      setPlayerName('') // Reset playerName first
-      dispatch(gamingRoom('')) // Reset selectedRoom
 
       socket.emit(
         'create-room',
