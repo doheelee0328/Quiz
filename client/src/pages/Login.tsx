@@ -7,6 +7,7 @@ import Button from '../components/Buttons'
 import { useNavigate } from 'react-router-dom'
 import { socket } from '../socket/index'
 import { setPlayersInRoom } from '../slices/player'
+import { setSelectedCategory, setSelectedDifficulty } from '../slices/questions'
 
 // use redux to use the nickname and room
 const Login = () => {
@@ -75,6 +76,8 @@ const Login = () => {
           // callback function that provides the name of the room
           if (typeof room === 'string') {
             navigate('/game-room')
+            dispatch(setSelectedCategory(''))
+            dispatch(setSelectedDifficulty(''))
             dispatch(setHostName(playerName)) // Dispatch setHostName after setting playerName
           } else {
             setMessage('The room already exists, please try again')

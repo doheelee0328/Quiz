@@ -4,6 +4,7 @@ import { setScore } from '../slices/questions'
 import Button from '../components/Buttons'
 import { useNavigate } from 'react-router-dom'
 import '../scss/main.scss'
+import Spinner from '../components/Spinner'
 
 const Questions = () => {
   const [questions, setQuestions] = useState<any[]>([])
@@ -142,7 +143,9 @@ const Questions = () => {
   return (
     <div>
       {loading ? (
-        <p>Loading...</p>
+        <div className='spinner'>
+          <Spinner />
+        </div>
       ) : (
         questions &&
         questions.length > 0 && (
