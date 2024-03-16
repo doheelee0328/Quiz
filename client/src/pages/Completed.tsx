@@ -29,7 +29,7 @@ const Completed = () => {
       </p>
       <div className='completed-button-container'>
         <Button title='Home' onClick={goToHome} />
-        <Button title='Leaderboard' />
+        <Button title='Leaderboard' onClick={goToLeaderboard} />
         <Button title='Play Again' />
       </div>
     </div>

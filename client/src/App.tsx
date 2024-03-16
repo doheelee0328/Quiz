@@ -12,6 +12,7 @@ const Questions = lazy(() => import('./pages/Questions'))
 const Completed = lazy(() => import('./pages/Completed'))
 const Rules = lazy(() => import('./pages/Rules'))
 const Logo = lazy(() => import('./components/Logo'))
+const Leaderboard = lazy(() => import('./pages/Leaderboard'))
 // since lazy loading asynchronous its a good practice to use suspense
 // to show that the page is loading.
 
@@ -29,6 +30,7 @@ function App() {
           <Route path='/questions' element={<Questions />} />
           <Route path='/completed' element={<Completed />} />
           <Route path='/rules' element={<Rules />} />
+          <Route path='/leaderboard' element={<Leaderboard />} />
         </Route>
       </Routes>
     </div>
