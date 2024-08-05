@@ -134,12 +134,13 @@ const Questions = () => {
 
     // Clean up interval on component unmount
     return () => clearInterval(timerId)
-  }, [currentQuestionIndex, questions])
+  }, [currentQuestionIndex, questions, navigate])
 
+  // Disabling ESLint for the next line
+  // eslint-disable-next-line
   useEffect(() => {
     fetchQuestions()
   }, [])
-
   return (
     <div>
       {loading ? (
