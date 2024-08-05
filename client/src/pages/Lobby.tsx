@@ -64,21 +64,21 @@ const Lobby = () => {
     }
 
     socket.on('receive-message', receiveMessageHandler)
+    socket.on('start-game', () => {
+      navigate('/rules')
+    })
 
     return () => {
       socket.off('update-nicknames')
       socket.off('receive-message', receiveMessageHandler)
       socket.off('playerData')
+      socket.off('start-game')
     }
   }, [])
 
   const navigateToQuestionPage = () => {
     socket.emit('start-game', selectedRoom)
   }
-
-  socket.on('start-game', () => {
-    navigate('/rules')
-  })
 
   const submitMessageHandler = () => {
     if (!message) {
