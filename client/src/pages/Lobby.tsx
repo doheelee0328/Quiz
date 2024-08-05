@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useReducer } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from '../components/Buttons'
 import { useSelector } from 'react-redux'
@@ -74,7 +74,7 @@ const Lobby = () => {
       socket.off('playerData')
       socket.off('start-game')
     }
-  }, [])
+  }, [dispatch, navigate])
 
   const navigateToQuestionPage = () => {
     socket.emit('start-game', selectedRoom)
