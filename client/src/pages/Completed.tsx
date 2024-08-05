@@ -29,12 +29,8 @@ const Completed = () => {
       <h1>Completed</h1>
       <img src={Trophy} alt='trophy' className='trophy-image' />
       <p className='score-completed'>{`You Scored ${score} Out Of 5`}</p>
-      <p className='leaderboard-message'>
-        Check out the score in the leaderboard
-      </p>
       <div className='completed-button-container'>
         <Button title='Home' onClick={goToHome} />
-
         <Button title='Play Again' onClick={goBackToQuestions} />
       </div>
     </div>
