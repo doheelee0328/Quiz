@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux'
 import Trophy from '../images/trophy.png'
 import Button from '../components/Buttons'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { setScore } from '../slices/questions'
 import '../scss/main.scss'
 
 const Completed = () => {
@@ -10,13 +12,21 @@ const Completed = () => {
   const nickname = useSelector((state: any) => state.playerSlice.nickname)
 
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const goToHome = () => {
     navigate('/')
+    window.location.reload()
   }
 
   const goToLeaderboard = () => {
     navigate('/leaderboard')
+  }
+
+  const goBackToQuestions = () => {
+    navigate('/questions')
+
+    dispatch(setScore(0))
   }
 
   return (
@@ -30,7 +40,7 @@ const Completed = () => {
       <div className='completed-button-container'>
         <Button title='Home' onClick={goToHome} />
         <Button title='Leaderboard' onClick={goToLeaderboard} />
-        <Button title='Play Again' />
+        <Button title='Play Again' onClick={goBackToQuestions} />
       </div>
     </div>
   )

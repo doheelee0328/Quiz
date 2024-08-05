@@ -35,11 +35,14 @@
     .error-selected-message {
       text-align: center;
     }
+    .out-of-questions {
+      padding-left: 2em
+    }
   }
   .timer-container {
     font-size: 1.2rem;
     text-align: end;
-    padding-bottom: 2em;
+    padding:1em;
     .timer {
       border-radius: 20px;
       background: $white;
@@ -48,6 +51,7 @@
       margin-left: 0.2em;
     }
   }
+
 }
 
 .spinner {
