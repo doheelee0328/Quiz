@@ -24,7 +24,6 @@ io.on('connection', (socket) => {
 
     rooms[room].messages.push({ message, nickname: socket.nickname, character })
   })
-
   socket.on('create-room', (room, nickname, callback) => {
     if (rooms[room]) {
       // Room already exists
@@ -66,7 +65,6 @@ io.on('connection', (socket) => {
       }
 
       callback(true)
-      console.log('Player joined room:', room, 'with nickname:', nickname)
       io.to(room).emit('update-nicknames', rooms[room].nicknames)
 
       // Send previous messages to the newly joined player
@@ -77,6 +75,10 @@ io.on('connection', (socket) => {
       // Emit event to update players in the room
       io.to(room).emit('update-players', rooms[room].nicknames)
     }
+  })
+
+  socket.on('start-game', (room) => {
+    io.to(room).emit('start-game')
   })
 })
 

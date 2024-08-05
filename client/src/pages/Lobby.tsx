@@ -9,17 +9,13 @@ import MessageLogo from '../images/send-message-icon.png'
 import '../scss/main.scss'
 import LobbyStatus from '../components/LobbyStatus'
 
-interface MessagesState  {
-nickname:string 
-message:string 
-character:string
-
+interface MessagesState {
+  nickname: string
+  message: string
+  character: string
 }
 
-
-
 const Lobby = () => {
-
   const [message, setMessage] = useState<string>('')
   const [errorMessage, setErrorMessage] = useState<string>('')
   const [messages, setMessages] = useState<Array<MessagesState>>([])
@@ -77,8 +73,12 @@ const Lobby = () => {
   }, [])
 
   const navigateToQuestionPage = () => {
-    navigate('/rules')
+    socket.emit('start-game', selectedRoom)
   }
+
+  socket.on('start-game', () => {
+    navigate('/rules')
+  })
 
   const submitMessageHandler = () => {
     if (!message) {

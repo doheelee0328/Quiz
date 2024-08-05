@@ -9,7 +9,6 @@ import '../scss/main.scss'
 
 const Completed = () => {
   const score = useSelector((state: any) => state.questionSlice.score)
-  const nickname = useSelector((state: any) => state.playerSlice.nickname)
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -17,10 +16,6 @@ const Completed = () => {
   const goToHome = () => {
     navigate('/')
     window.location.reload()
-  }
-
-  const goToLeaderboard = () => {
-    navigate('/leaderboard')
   }
 
   const goBackToQuestions = () => {
@@ -39,7 +34,7 @@ const Completed = () => {
       </p>
       <div className='completed-button-container'>
         <Button title='Home' onClick={goToHome} />
-        <Button title='Leaderboard' onClick={goToLeaderboard} />
+
         <Button title='Play Again' onClick={goBackToQuestions} />
       </div>
     </div>
