@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setScore } from '../slices/questions'
 import Button from '../components/Buttons'
@@ -26,47 +26,50 @@ const Questions = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const fetchQuestions = async (retryCount = 3) => {
-    try {
-      const response = await fetch(
-        `https://opentdb.com/api.php?amount=5&category=${selectedCategory.id}&difficulty=${difficulty}&type=multiple`
-      )
+  const fetchQuestions = useCallback(
+    async (retryCount = 3) => {
+      try {
+        const response = await fetch(
+          `https://opentdb.com/api.php?amount=5&category=${selectedCategory.id}&difficulty=${difficulty}&type=multiple`
+        )
 
-      if (response.status === 429) {
-        const retryAfter = response.headers.get('Retry-After')
-        const delay = retryAfter ? parseInt(retryAfter) * 1000 : 1000 // Default to 1 second delay if no Retry-After header provided
+        if (response.status === 429) {
+          const retryAfter = response.headers.get('Retry-After')
+          const delay = retryAfter ? parseInt(retryAfter) * 1000 : 1000 // Default to 1 second delay if no Retry-After header provided
 
+          if (retryCount > 0) {
+            setTimeout(() => {
+              fetchQuestions(retryCount - 1)
+            }, delay)
+          } else {
+            // Handle error or display a message
+            console.error('API rate limit exceeded')
+            // Optionally, set loading state to false to stop continuous loading
+            setLoading(false)
+          }
+
+          return
+        }
+
+        const data = await response.json()
+        setQuestions(data.results)
+        setLoading(false)
+      } catch (error) {
+        console.error(error)
         if (retryCount > 0) {
           setTimeout(() => {
             fetchQuestions(retryCount - 1)
-          }, delay)
+          }, 1000) // Retry after 1 second
         } else {
           // Handle error or display a message
-          console.error('API rate limit exceeded')
+          console.error('Error fetching data')
           // Optionally, set loading state to false to stop continuous loading
           setLoading(false)
         }
-
-        return
       }
-
-      const data = await response.json()
-      setQuestions(data.results)
-      setLoading(false)
-    } catch (error) {
-      console.error(error)
-      if (retryCount > 0) {
-        setTimeout(() => {
-          fetchQuestions(retryCount - 1)
-        }, 1000) // Retry after 1 second
-      } else {
-        // Handle error or display a message
-        console.error('Error fetching data')
-        // Optionally, set loading state to false to stop continuous loading
-        setLoading(false)
-      }
-    }
-  }
+    },
+    [selectedCategory.id, difficulty]
+  )
 
   useEffect(() => {
     if (questions.length > 0) {
@@ -136,11 +139,10 @@ const Questions = () => {
     return () => clearInterval(timerId)
   }, [currentQuestionIndex, questions, navigate])
 
-  // Disabling ESLint for the next line
-  // eslint-disable-next-line
   useEffect(() => {
     fetchQuestions()
-  }, [])
+  }, [fetchQuestions])
+
   return (
     <div>
       {loading ? (
